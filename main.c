@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdlib.h>
 //#include <errno.h>
 
 int		ft_strlen(char *str);
@@ -12,6 +13,7 @@ char*	ft_strdup(const char *s);
 
 int main()
 {
+	unsigned int  ret;
 	char *str3;
 	char buf[122];
 	char str2[] = "hola";
@@ -31,6 +33,10 @@ int main()
 
 	str3 = ft_strdup(str2);
 	printf("%s", str3);
+
+	ret = malloc(-12);
+	printf("ret is %d\n", ret);
+	perror("");
 
 	return (0);
 }

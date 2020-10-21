@@ -1,5 +1,5 @@
 global ft_read
-extern __ernno_location
+extern __errno_location
 
 section .text
 ft_read:
@@ -10,10 +10,10 @@ ft_read:
 	js .error
 	ret
 
-.error
+.error:
 	imul rax, -1
 	mov r10, rax
-	push
+	push r10
 	call __errno_location
 	pop r10
 	mov [rax], r10

@@ -16,11 +16,8 @@ ft_strdup:
 	jz .null
 	mov rdi, rax
 	pop rsi
-	push rax
 	call ft_strcpy
-	pop rax
 	ret
 
 .null:
-	xor rax, rax
 	ret

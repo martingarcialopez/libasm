@@ -1,17 +1,23 @@
 NAME	= libasm.a
 
-FILES	= ft_strlen.s \
-		  ft_strcpy.s \
-		  ft_strcmp.s \
-		  ft_write.s \
-		  ft_read.s \
-		  ft_strdup.s
+SRCDIR	= srcs/
 
-BFILES = 
+FILES = ft_strlen.s \
+	ft_strcpy.s \
+	ft_strcmp.s \
+	ft_write.s \
+	ft_read.s \
+	ft_strdup.s
 
-SRCS	=  $(FILES)
+BFILES = ft_atoi_base.s \
+	 ft_list_push_front.s \
+	 ft_list_size.s \
+	 ft_list_sort.s \
+	 ft_list_remove_if.s
 
-BSRCS	= $(BFILES)
+SRCS	= $(addprefix $(SRCDIR), $(FILES))
+
+BSRCS	= $(addprefix $(SRCDIR), $(BFILES))
 
 OBJS	= ${SRCS:.s=.o}
 
@@ -26,23 +32,22 @@ RM		= rm -f
 %.o:%.s
 		$(NASM) $(NASMFLAGS) $<
 
+${NAME}:	${OBJS}
+		ar rc ${NAME} ${OBJS}
+		ranlib ${NAME}
 
-${NAME}:    ${OBJS}
-			ar rc ${NAME} ${OBJS}
-			ranlib ${NAME}
+all:	${NAME}
 
-all:		${NAME}
-
-bonus:	     ${BOBJS} ${NAME}
-			ar rc ${NAME} ${OBJS} ${BOBJS}
-			ranlib ${NAME}
+bonus:	${BOBJS} ${NAME}
+	ar rc ${NAME} ${OBJS} ${BOBJS}
+	ranlib ${NAME}
 
 clean:
-			${RM} ${OBJS} ${BOBJS}
+	${RM} ${OBJS} ${BOBJS}
 
-fclean:		clean
-			${RM} ${NAME}
+fclean:	clean
+	${RM} ${NAME}
 
-re:			fclean all
+re:	fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:	all bonus clean fclean re

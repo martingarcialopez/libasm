@@ -1,13 +1,14 @@
 global ft_write
+
 extern __errno_location
 
 section .text
 ft_write:
 
-	mov rax, 1
+	mov rax, 1 ; 1, syscall number for write
 	syscall
 	test rax, rax
-	js .error
+	js .error ; jump if sign flag
 	ret
 
 .error:

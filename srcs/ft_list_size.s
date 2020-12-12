@@ -9,8 +9,7 @@ ft_list_size:
 	cmp rdi, 0
 	jz .end
 	inc rax
-	mov rcx, [rdi + 8]
-	mov rdi, rcx
+	mov rdi, [rdi + 8]
 	jmp .loop
 .end:
 	ret

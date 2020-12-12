@@ -23,7 +23,10 @@ ft_list_push_front:
 	mov rdi, rsi
 	call ft_create_elem
 	pop rdi
+	test rax, rax
+	jz .ret
 	mov rcx, [rdi]
 	mov [rax + 8], rcx
 	mov [rdi], rax
+.ret:
 	ret

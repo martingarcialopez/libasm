@@ -78,9 +78,9 @@ int main()
 	var = NULL;
 
 	printf("====    FT_ATOI_BASE    ====\n\n");
-	printf("ft_atoi_base(\"  +10\", \"0123456789\") = %d\n", ft_atoi_base("  +10", "0123456789"));
-	printf("ft_atoi_base(\" --10\", \"01\") = %d\n", ft_atoi_base(" --10", "01"));
-	printf("ft_atoi_base(\"---10alo\", \"01\") = %d\n", ft_atoi_base("---10alo", "01"));
+	printf("ft_atoi_base(\"\\t\\r\\n\\v\\f +10\", \"0123456789\") = %d\n", ft_atoi_base("\t\r\n\v\f+10", "0123456789"));
+	printf("ft_atoi_base(\"  --10\", \"01\") = %d\n", ft_atoi_base("  --10", "01"));
+	printf("ft_atoi_base(\" ---10alo\", \"01\") = %d\n", ft_atoi_base(" ---10alo", "01"));
 	printf("ft_atoi_base(\"+-+ff\", \"0123456789abcdef\") = %d\n", ft_atoi_base("+-+ff", "0123456789abcdef"));
 	printf("ft_atoi_base(\"23\", \"01-\") = %d\n", ft_atoi_base("23", "01-"));
 	printf("ft_atoi_base(\"14\", \"0 1\") = %d\n", ft_atoi_base("14", "0 1"));

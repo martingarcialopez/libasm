@@ -42,17 +42,17 @@ ft_list_sort:
 	pop rdi
 	cmp eax, 0        ; we compare ONLY first 4 bytes of rax (int size)
 	jle .j2 
-	mov r8, [rdx + 8] ; r8 is lst->next
-	mov r9, [r8 + 8]  ; r9 is lst->next->next
-	mov [rdx + 8], r9 ; lst->next = lst->next->next
-	mov [r8 + 8], rdx ; (former lst->next)->next = lst
+	mov r8, [rdx + 8] ; r8 = lst->next
+	mov r9, [r8 + 8]  ; r9 = lst->next->next
+	mov [rdx + 8], r9 ; lst->next = r9
+	mov [r8 + 8], rdx ; r8->next = lst
 
 	cmp rdx, [rdi]    ; if lst == *begin_lst
 	jnz .j1
-	mov [rdi], r8     ; *begin_list = former lst->next
+	mov [rdi], r8     ; *begin_list = r8
 	jmp .j2
-.j1:
-	mov [r11 + 8], r8 ; lst_prev->next = former lst->next
+.j1:                      ; else
+	mov [r11 + 8], r8 ; lst_prev->next = r8
 .j2:
 	mov r11, rdx
 	mov rdx, [rdx + 8] ; lst = lst->next

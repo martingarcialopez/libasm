@@ -55,12 +55,16 @@ ft_atoi_base:
 	; after pushing 3 registers to the stack now the first element
 	; of the array will be at [rsp + 24]
 
+	cmp rdi, 0
+	jz .error
+	cmp rsi, 0
+	jz .error
 	push rdi
 	mov rdi, rsi
 	call check_base
 	pop rdi
 	cmp al, 0
-	jz .base_error
+	jz .error
 
 	mov r10, rsp
 	add r10, 24
@@ -104,17 +108,15 @@ ft_atoi_base:
 	jmp .loop0
 .end0:
 	xor r10, r10
-.hello:
 	cmp byte[rdi], 45 ; if *str == '-', neg++, str++
 	jnz .j0
 	inc r10
 	inc rdi
-	jmp .hello
+	jmp .bye
 .j0:
 	cmp byte[rdi], 43 ; if *str == '+', str++
 	jnz .bye
 	inc rdi
-	jmp .hello
 .bye:
 	xor rcx, rcx
 .loop1:
@@ -148,9 +150,6 @@ ft_atoi_base:
 	mov eax, r11d
 	cmp r10, 0 ; if neg > 0
 	jle .epilogue
-	and r10, 1
-	cmp r10, 0 ; if neg is odd (first bit is on)
-	jz .epilogue
 	imul eax, -1 ; nb *= -1
 .epilogue:
 	pop r15 ; clean the stack
@@ -159,6 +158,6 @@ ft_atoi_base:
 	add rsp, 127
 	ret
 
-.base_error:
+.error:
 	xor eax, eax
 	jmp .epilogue

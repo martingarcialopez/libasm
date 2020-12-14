@@ -79,12 +79,16 @@ int main()
 
 	printf("====    FT_ATOI_BASE    ====\n\n");
 	printf("ft_atoi_base(\"\\t\\r\\n\\v\\f +10\", \"0123456789\") = %d\n", ft_atoi_base("\t\r\n\v\f+10", "0123456789"));
-	printf("ft_atoi_base(\"  --10\", \"01\") = %d\n", ft_atoi_base("  --10", "01"));
-	printf("ft_atoi_base(\" ---10alo\", \"01\") = %d\n", ft_atoi_base(" ---10alo", "01"));
-	printf("ft_atoi_base(\"+-+ff\", \"0123456789abcdef\") = %d\n", ft_atoi_base("+-+ff", "0123456789abcdef"));
-	printf("ft_atoi_base(\"23\", \"01-\") = %d\n", ft_atoi_base("23", "01-"));
-	printf("ft_atoi_base(\"14\", \"0 1\") = %d\n", ft_atoi_base("14", "0 1"));
-	printf("ft_atoi_base(\"16\", \"0123455\") = %d\n\n\n", ft_atoi_base("16", "0123455"));
+	printf("ft_atoi_base(\"  -10\", \"01\") = %d\n", ft_atoi_base("  -10", "01"));
+	printf("ft_atoi_base(\" -10alo\", \"01\") = %d\n", ft_atoi_base(" -10alo", "01"));
+	printf("ft_atoi_base(\"+ff\", \"0123456789abcdef\") = %d\n", ft_atoi_base("+ff", "0123456789abcdef"));
+	printf("ft_atoi_base(\"--10\", \"01\") = %d\n", ft_atoi_base("--10", "01"));
+	printf("ft_atoi_base(\"+-10\", \"01\") = %d\n", ft_atoi_base("+-10", "01"));
+	printf("ft_atoi_base(\"11\", \"01-\") = %d\n", ft_atoi_base("11", "01-"));
+	printf("ft_atoi_base(\"13\", \"0 1234\") = %d\n", ft_atoi_base("13", "0 1234"));
+	printf("ft_atoi_base(\"16\", \"01234556\") = %d\n", ft_atoi_base("16", "01234556"));
+	printf("ft_atoi_base(NULL, \"0123456789\") = %d\n", ft_atoi_base(NULL, "0123456789"));
+	printf("ft_atoi_base(\"  --10\", NULL) = %d\n\n\n", ft_atoi_base("  --10", NULL));
 	
 	printf("====    ( LONG ) LIST    ====\n\n");
 	ft_list_push_front(&var, (void*)7);

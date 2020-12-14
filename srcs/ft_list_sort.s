@@ -9,21 +9,25 @@ ft_list_sort:
 	;rdi **begin_list
 	;rsi int (*cmp)()
 
+	cmp rdi, 0
+	jz .end
+	cmp rsi, 0
+	jz .end
 	push rdi
 	mov rdi, [rdi]
 	call ft_list_size
 	pop rdi
 	mov rcx, rax    ; list size to rcx
-.loop1:
+.loop:
 	cmp rcx, 0      ; while ( size--)
-	jle .end1
+	jle .end
 	dec rcx
 	mov rdx, [rdi]  ; rdx = *begin_lst
 .loop2:
 	cmp rdx, 0	; while (lst && lst->next)
-	jz .loop1
+	jz .loop
 	cmp qword[rdx + 8], 0
-	jz .loop1
+	jz .loop
 
 	push rdi
 	push rsi
@@ -57,5 +61,5 @@ ft_list_sort:
 	mov r11, rdx
 	mov rdx, [rdx + 8] ; lst = lst->next
 	jmp .loop2
-.end1:
+.end:
 	ret

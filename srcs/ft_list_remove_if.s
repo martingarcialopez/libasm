@@ -17,6 +17,12 @@ ft_list_remove_if:
 	push r12
 	push r13
 	push r14
+	cmp rdi, 0
+	jz .end0
+	cmp rdx, 0
+	jz .end0
+	cmp rcx, 0
+	jz .end0
 	mov r12, [rdi]
 .loop0:
 	cmp r12, 0 ; while current
